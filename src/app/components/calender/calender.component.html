@@ -1,0 +1,15 @@
+<div class="bg-white rounded-lg shadow p-6">
+  <h2 class="text-lg font-semibold mb-4">Schedule a Meeting or Task</h2>
+  <div class="h-[500px]">
+    <!-- Add height to make calendar visible -->
+    <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+  </div>
+</div>
+<app-modal-calendar
+  #modalCalendar
+  *ngIf="modalOpen"
+  [title]="modalCalendar.title"
+  (closeModal)="closeModal()"
+  (saveEvent)="saveEvent($event)"
+></app-modal-calendar>
+<!-- (saveEvent)="saveEvent($event)" -->

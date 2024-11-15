@@ -1,0 +1,43 @@
+<div class="fixed top-4 right-4 z-50 flex flex-col gap-2">
+  <div
+    *ngFor="let toast of toasts"
+    class="animate-slide-in-right rounded-lg shadow-lg p-4 min-w-[300px]"
+    [ngClass]="{
+      'bg-green-100 border-l-4 border-green-500': toast.type === 'success',
+      'bg-red-100 border-l-4 border-red-500': toast.type === 'error',
+      'bg-blue-100 border-l-4 border-blue-500': toast.type === 'info'
+    }"
+  >
+    <div class="flex justify-between items-start">
+      <div>
+        <h3
+          class="font-medium text-sm"
+          [ngClass]="{
+            'text-green-800': toast.type === 'success',
+            'text-red-800': toast.type === 'error',
+            'text-blue-800': toast.type === 'info'
+          }"
+        >
+          {{ toast.title }}
+        </h3>
+        <p
+          *ngIf="toast.description"
+          class="mt-1 text-sm"
+          [ngClass]="{
+            'text-green-600': toast.type === 'success',
+            'text-red-600': toast.type === 'error',
+            'text-blue-600': toast.type === 'info'
+          }"
+        >
+          {{ toast.description }}
+        </p>
+      </div>
+      <button
+        (click)="removeToast(toast)"
+        class="ml-4 text-gray-400 hover:text-gray-600"
+      >
+        ×
+      </button>
+    </div>
+  </div>
+</div>

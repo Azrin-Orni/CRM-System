@@ -1,0 +1,132 @@
+<div class="container max-w-6xl mx-auto p-4">
+  <!-- Search Bar -->
+  <!-- <div class="mb-6">
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Search contacts..."
+      class="w-full p-2 border rounded-lg"
+    />
+  </div> -->
+
+  <!-- Contact Form -->
+  <div class="mb-8 bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">
+      {{ editingContact ? "Edit" : "Add" }} Contact
+    </h2>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block mb-2">Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
+          <label class="block mb-2">Email</label>
+          <input
+            type="email"
+            formControlName="email"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
+          <label class="block mb-2">Phone</label>
+          <input
+            type="tel"
+            formControlName="phone"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
+          <label class="block mb-2">Company</label>
+          <input
+            type="text"
+            formControlName="company"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
+          <label class="block mb-2">Status</label>
+          <select formControlName="status" class="w-full p-2 border rounded">
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+        <div>
+          <label class="block mb-2">Tags (comma-separated)</label>
+          <input
+            type="text"
+            formControlName="tags"
+            class="w-full p-2 border rounded"
+          />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block mb-2">Notes</label>
+          <textarea
+            formControlName="notes"
+            class="w-full p-2 border rounded"
+          ></textarea>
+        </div>
+      </div>
+      <div class="mt-4 flex gap-2">
+        <button
+          type="submit"
+          class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {{ editingContact ? "Update" : "Add" }} Contact
+        </button>
+        <button
+          *ngIf="editingContact"
+          type="button"
+          (click)="cancelEdit()"
+          class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Contacts List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div
+      *ngFor="let contact of filteredContacts$ | async"
+      class="bg-white p-4 rounded-lg shadow-md"
+    >
+      <div class="flex justify-between items-start mb-2">
+        <h3 class="text-lg font-semibold">{{ contact.name }}</h3>
+        <div class="flex gap-2">
+          <button
+            (click)="editContact(contact)"
+            class="text-blue-500 hover:text-blue-700"
+          >
+            Edit
+          </button>
+          <button
+            (click)="deleteContact(contact.id)"
+            class="text-red-500 hover:text-red-700"
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+      <p class="text-gray-600">{{ contact.email }}</p>
+      <p class="text-gray-600">{{ contact.phone }}</p>
+      <p class="text-gray-600">{{ contact.company }}</p>
+      <div class="mt-2">
+        <span
+          *ngFor="let tag of contact.tags"
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+        >
+          {{ tag }}
+        </span>
+      </div>
+      <p class="text-sm text-gray-500 mt-2">
+        Last Contact: {{ contact.lastContact | date }}
+      </p>
+    </div>
+  </div>
+</div>
