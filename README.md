@@ -1,3 +1,10 @@
+CRM System - Developed a comprehensive CRM system using Angular for the frontend.Utilized RxJS for real-time updates and efficient data handling. Ensured data consistency with proper validation and error handling. Styled the application using Tailwind CSS for a responsive and modern UI
+- Designed a task management component for CRUD operations on tasks.
+- Integrated a dashboard component displaying sales metrics and pipeline data using Chart.js.
+- Implemented a calendar component with FullCalendar for scheduling meetings and tasks.
+- Created a modal component for adding new events, automatically setting the selected date as the due date.
+
+
 # Crm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
